@@ -1,4 +1,5 @@
 import { Geist, Geist_Mono } from "next/font/google";
+import Script from 'next/script';
 import "./globals.css";
 
 const geistSans = Geist({
@@ -66,6 +67,11 @@ export default function RootLayout({ children }) {
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-white`}
       >
         {children}
+        <Script
+          src="https://cdn.seline.com/seline.js"
+          strategy="afterInteractive"
+          data-token="281cd7f23d86c18"
+        />
       </body>
     </html>
   );

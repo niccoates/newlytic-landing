@@ -19,13 +19,30 @@ export default function Home() {
     e.preventDefault();
     setStatus('loading');
     
-    // Store email for now, we'll implement Resend later
-    console.log('Email captured:', email);
-    setStatus('success');
-    setEmail('');
-    
-    // Reset success message after 3 seconds
-    setTimeout(() => setStatus('idle'), 3000);
+    try {
+      const response = await fetch('/api/waitlist', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || 'Failed to join waitlist');
+      }
+
+      setStatus('success');
+      setEmail('');
+    } catch (error) {
+      console.error('Error:', error);
+      setStatus('error');
+    } finally {
+      // Reset success message after 3 seconds
+      setTimeout(() => setStatus('idle'), 3000);
+    }
   };
 
   return (
@@ -87,6 +104,9 @@ export default function Home() {
             {status === 'success' && (
               <p className="mt-2 text-sm text-green-600">Thanks for joining! We'll be in touch soon.</p>
             )}
+            {status === 'error' && (
+              <p className="mt-2 text-sm text-red-600">Something went wrong. Please try again.</p>
+            )}
           </div>
 
           <div className="mt-8 sm:mt-12">
@@ -109,7 +129,7 @@ export default function Home() {
                 priority
                 quality={100}
                 sizes="(max-width: 1280px) 90vw, 1200px"
-                className={`rounded-md shadow-2xl ring-1 ring-gray-900/10 w-full h-auto transform transition-all duration-700 ease-in-out hover:-translate-y-40 cursor-pointer ${shouldPeek ? 'animate-peek' : ''}`}
+                className={`rounded-md shadow-2xl ring-1 ring-gray-900/10 w-full h-auto transform transition-all duration-700 ease-in-out hover:-translate-y-30 cursor-pointer ${shouldPeek ? 'animate-peek' : ''}`}
                 style={{
                   animation: shouldPeek ? 'peek 1s ease-in-out' : 'none'
                 }}
