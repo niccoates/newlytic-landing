@@ -1,103 +1,123 @@
-import Image from "next/image";
+"use client"
+import { useState, useEffect } from 'react';
+import Image from 'next/image';
+import Link from 'next/link';
+import productImage from '@/assets/product.png';
 
 export default function Home() {
-  return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              src/app/page.js
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+  const [email, setEmail] = useState('');
+  const [status, setStatus] = useState('idle'); // idle, loading, success, error
+  const [shouldPeek, setShouldPeek] = useState(false);
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+  useEffect(() => {
+    // Start the peek animation after a short delay
+    const timer = setTimeout(() => setShouldPeek(true), 1000);
+    return () => clearTimeout(timer);
+  }, []);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setStatus('loading');
+    
+    // Store email for now, we'll implement Resend later
+    console.log('Email captured:', email);
+    setStatus('success');
+    setEmail('');
+    
+    // Reset success message after 3 seconds
+    setTimeout(() => setStatus('idle'), 3000);
+  };
+
+  return (
+    <div className="min-h-screen flex flex-col bg-white">
+      <style jsx global>{`
+        @keyframes peek {
+          0%, 100% { transform: translateY(0); }
+          50% { transform: translateY(-40px); }
+        }
+      `}</style>
+      <header className="bg-white mt-10 sm:mt-20">
+        <nav aria-label="Global" className="mx-auto flex max-w-5xl items-center justify-between px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center gap-x-6">
+            <Link href="/" className="-m-1.5 p-1.5">
+              <span className="sr-only">Newlytic</span>
+              <Image
+                alt=""
+                src="/logo.svg"
+                width={30}
+                height={30}
+              />
+            </Link>
+          </div>
+        </nav>
+      </header>
+
+      <main className="flex-1 flex flex-col relative overflow-hidden">
+        <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 w-full">
+          <div className="mt-4 sm:mt-6">
+            <h1 className="text-4xl sm:text-5xl font-bold tracking-tight text-neutral-900 leading-[1.1]">
+              <span className="inline sm:hidden">Customer tracking, made smarter.</span>
+              <span className="hidden sm:inline">Customer tracking,<br/> made smarter.</span>
+            </h1>
+            <p className="mt-3 sm:mt-4 text-base sm:text-lg text-neutral-600 max-w-xl leading-[1.7]">Turn sign-ups into <strong className="text-neutral-900">insights</strong> with AI magic, <strong className="text-neutral-900">log</strong> every step, and <strong className="text-neutral-900">sync</strong> it all in one sleek, affordable tool.</p>
+            
+            <form onSubmit={handleSubmit} className="mt-4 sm:mt-6 relative w-full max-w-xl">
+              <label htmlFor="email" className="sr-only">Email address</label>
+              <div className="flex flex-col sm:flex-row gap-3 sm:gap-0">
+                <input
+                  id="email"
+                  name="email"
+                  type="email"
+                  required
+                  className="w-full rounded-xl border-0 bg-white/5 px-5 py-4 text-neutral-900 shadow-sm ring-1 ring-inset ring-neutral-200 focus:ring-2 focus:ring-inset focus:ring-neutral-900 text-base sm:text-[17px] placeholder:text-neutral-400"
+                  placeholder="Enter your email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  disabled={status === 'loading'}
+                />
+                <button
+                  type="submit"
+                  className="w-full sm:w-auto sm:absolute sm:right-2 sm:top-1/2 sm:-translate-y-1/2 flex-none rounded-xl bg-neutral-900 px-5 py-4 sm:py-2.5 text-base sm:text-[15px] font-semibold text-white shadow-sm hover:bg-neutral-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-900 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 ease-in-out"
+                  disabled={status === 'loading'}
+                >
+                  {status === 'loading' ? 'Joining...' : 'Join waitlist'}
+                </button>
+              </div>
+            </form>
+            {status === 'success' && (
+              <p className="mt-2 text-sm text-green-600">Thanks for joining! We'll be in touch soon.</p>
+            )}
+          </div>
+
+          <div className="mt-8 sm:mt-12">
+            <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-gray-900 leading-[1.1]">Why Newlytic?</h2>
+            <div className="mt-3 sm:mt-4 max-w-3xl space-y-3 sm:space-y-4">
+              <p className="text-base sm:text-[17px] text-gray-500 leading-[1.7]">There are dozens of CRMs out there—bloated, pricey, and overkill for most. If you just need a spreadsheet to list your customers, any of them will do. Many are even free.</p>
+              <p className="text-base sm:text-[17px] text-gray-500 leading-[1.7]">But if you want to <i>know</i> your customers and grow smarter without the hassle, you need Newlytic. A tool that syncs, delivers insights, and logs every step should take the grunt work off your plate—so you can focus on what matters.</p>
+            </div>
+          </div>
+        </div>
+
+        <div className="hidden sm:block absolute -bottom-1/4 w-full" style={{ transform: 'translateY(-10px)' }}>
+          <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+            <div className="rounded-xl">
+              <Image
+                alt="App screenshot"
+                src={productImage}
+                width={1920}
+                height={1236}
+                priority
+                quality={100}
+                sizes="(max-width: 1280px) 90vw, 1200px"
+                className={`rounded-md shadow-2xl ring-1 ring-gray-900/10 w-full h-auto transform transition-all duration-700 ease-in-out hover:-translate-y-40 cursor-pointer ${shouldPeek ? 'animate-peek' : ''}`}
+                style={{
+                  animation: shouldPeek ? 'peek 1s ease-in-out' : 'none'
+                }}
+              />
+            </div>
+          </div>
         </div>
       </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
     </div>
   );
 }
