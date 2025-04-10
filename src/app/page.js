@@ -46,7 +46,7 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-white">
+    <div className="h-screen overflow-hidden flex flex-col bg-white">
       <style jsx global>{`
         @keyframes peek {
           0%, 100% { transform: translateY(0); }
@@ -64,6 +64,19 @@ export default function Home() {
                 width={30}
                 height={30}
               />
+            </Link>
+          </div>
+          <div>
+            <Link 
+              href="https://x.com/newlytic" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="text-neutral-400 hover:text-neutral-900 transition-colors duration-200"
+            >
+              <span className="sr-only">Follow us on X (Twitter)</span>
+              <svg viewBox="0 0 24 24" aria-hidden="true" className="h-6 w-6 fill-current">
+                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path>
+              </svg>
             </Link>
           </div>
         </nav>
@@ -86,7 +99,7 @@ export default function Home() {
                   name="email"
                   type="email"
                   required
-                  className="w-full rounded-xl border-0 bg-white/5 px-5 py-4 text-neutral-900 shadow-sm ring-1 ring-inset ring-neutral-200 focus:ring-2 focus:ring-inset focus:ring-neutral-900 text-base sm:text-[17px] placeholder:text-neutral-400"
+                  className="w-full rounded-xl border-0 bg-white/5 px-5 py-4 text-neutral-900 shadow-sm ring-1 ring-inset ring-neutral-200 focus:ring-2 focus:ring-inset focus:ring-neutral-900 text-base sm:text-[17px] placeholder:text-neutral-400 outline-none"
                   placeholder="Enter your email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
@@ -118,7 +131,7 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="hidden sm:block absolute -bottom-1/4 w-full" style={{ transform: 'translateY(-10px)' }}>
+        <div className="hidden sm:block bottom-0 left-0 right-0 w-full mt-16">
           <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
             <div className="rounded-xl">
               <Image
@@ -129,7 +142,7 @@ export default function Home() {
                 priority
                 quality={100}
                 sizes="(max-width: 1280px) 90vw, 1200px"
-                className={`rounded-md shadow-2xl ring-1 ring-gray-900/10 w-full h-auto transform transition-all duration-700 ease-in-out hover:-translate-y-30 cursor-pointer ${shouldPeek ? 'animate-peek' : ''}`}
+                className={`rounded-md shadow-2xl ring-1 ring-gray-900/10 w-full max-h-[60vh] h-auto transform transition-all duration-700 ease-in-out hover:translate-y-[-5%] cursor-pointer object-contain mx-auto ${shouldPeek ? 'animate-peek' : ''}`}
                 style={{
                   animation: shouldPeek ? 'peek 1s ease-in-out' : 'none'
                 }}
