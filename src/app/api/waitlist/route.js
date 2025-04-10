@@ -7,7 +7,6 @@ const resend = new Resend(process.env.RESEND_API_KEY);
 // Allowed origins for CORS
 const allowedOrigins = [
   'https://newlytic.co',
-  'http://localhost:3000',
 ];
 
 // Simple email validation regex
