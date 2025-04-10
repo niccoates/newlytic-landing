@@ -14,12 +14,12 @@ const geistMono = Geist_Mono({
 
 export const metadata = {
   title: "Newlytic | Smart Customer Tracking Platform",
-  description: "Turn sign-ups into insights with AI magic. Track, analyze, and understand your customers with our sleek, affordable tool. Get smarter customer data without the bloat.",
-  keywords: ["customer tracking", "customer analytics", "CRM", "customer insights", "AI analytics", "customer data platform", "startup analytics"],
+  description: "Transform sign-ups into valuable customer relationships with Newlytic, the smart tool for tracking and understanding your customers effortlessly.",
+  keywords: ["customer tracking", "customer tracking tool", "customer analytics", "CRM", "customer insights", "AI analytics", "customer data platform", "startup analytics"],
   authors: [{ name: "Newlytic" }],
   openGraph: {
     title: "Newlytic | Smart Customer Tracking Platform",
-    description: "Turn sign-ups into insights with AI magic. Track, analyze, and understand your customers with our sleek, affordable tool.",
+    description: "Transform sign-ups into valuable customer relationships with Newlytic, the smart tool for tracking and understanding your customers effortlessly.",
     url: "https://newlytic.co",
     siteName: "Newlytic",
     images: [
@@ -36,7 +36,7 @@ export const metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Newlytic | Smart Customer Tracking Platform",
-    description: "Turn sign-ups into insights with AI magic. Track, analyze, and understand your customers with our sleek, affordable tool.",
+    description: "Transform sign-ups into valuable customer relationships with Newlytic, the smart tool for tracking and understanding your customers effortlessly.",
     images: ["/og-image.png"],
   },
   robots: {
