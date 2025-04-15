@@ -14,7 +14,8 @@ const geistMono = Geist_Mono({
 
 export const metadata = {
   title: "Newlytic – Customer pipeline on autopilot",
-description: "Automatically log new signups, get AI-powered intel, and track every interaction — simple, actionable, and always up to date.",
+  description: "Automatically log new signups, get AI-powered intel, and track every interaction — simple, actionable, and always up to date.",
+  metadataBase: new URL('https://newlytic.co'),
   keywords: ["customer tracking", "customer tracking tool", "customer analytics", "CRM", "customer insights", "AI analytics", "customer data platform", "startup analytics"],
   authors: [{ name: "Newlytic" }],
   openGraph: {
@@ -63,6 +64,10 @@ description: "Automatically log new signups, get AI-powered intel, and track eve
 export default function RootLayout({ children }) {
   return (
     <html lang="en" className="bg-white">
+  <head>
+    <link rel="alternate" href="https://newlytic.co/" hrefLang="en" />
+    <link rel="alternate" href="https://newlytic.co/" hrefLang="x-default" />
+  </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-white`}
       >

@@ -59,7 +59,7 @@ export default function Home() {
             <Link href="/" className="-m-1.5 p-1.5">
               <span className="sr-only">Newlytic</span>
               <Image
-                alt=""
+                alt="Newlytic Logo"
                 src="/logo.svg"
                 width={30}
                 height={30}
@@ -143,7 +143,7 @@ export default function Home() {
                 priority
                 quality={100}
                 sizes="(max-width: 1280px) 90vw, 1200px"
-                className={`rounded-md shadow-2xl ring-1 ring-gray-900/10 w-full max-h-[60vh] h-auto transform transition-all duration-700 ease-in-out hover:translate-y-[-5%] cursor-pointer object-contain mx-auto ${shouldPeek ? 'animate-peek' : ''}`}
+                className={`rounded-md shadow-2xl ring-1 ring-gray-900/10 w-full max-h-[60vh] h-auto transform transition-all duration-700 ease-in-out hover:translate-y-[-3%] cursor-pointer object-contain mx-auto ${shouldPeek ? 'animate-peek' : ''}`}
                 style={{
                   animation: shouldPeek ? 'peek 1s ease-in-out' : 'none'
                 }}
