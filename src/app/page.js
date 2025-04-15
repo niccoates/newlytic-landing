@@ -84,12 +84,13 @@ export default function Home() {
 
       <main className="flex-1 flex flex-col relative overflow-hidden">
         <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 w-full">
-          <div className="mt-4 sm:mt-6">
-            <h1 className="text-4xl sm:text-5xl font-bold tracking-tight text-neutral-900 leading-[1.1]">
-              <span className="inline sm:hidden">Customer tracking, made smarter.</span>
-              <span className="hidden sm:inline">Customer tracking,<br/> made smarter.</span>
+          <div className="mt-10 sm:mt-16">
+            <h1 className="text-5xl sm:text-6xl font-bold tracking-tight text-neutral-900 leading-[1.1]">
+              Your customer pipeline, <br/>on autopilot.
             </h1>
-            <p className="mt-3 sm:mt-4 text-base sm:text-lg text-neutral-600 max-w-xl leading-[1.7]">Turn sign-ups into <strong className="text-neutral-900">insights</strong> with AI magic, <strong className="text-neutral-900">log</strong> every step, and <strong className="text-neutral-900">sync</strong> it all in one sleek, affordable tool.</p>
+            <p className="mt-3 sm:mt-4 text-base sm:text-lg text-neutral-600 max-w-xl leading-[1.8]">
+             Automatically log new signups, get AI-powered intel, and track every interaction — simple, actionable, and always up to date.
+            </p>
             
             <form onSubmit={handleSubmit} className="mt-4 sm:mt-6 relative w-full max-w-xl">
               <label htmlFor="email" className="sr-only">Email address</label>
@@ -125,8 +126,8 @@ export default function Home() {
           <div className="mt-8 sm:mt-12">
             <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-gray-900 leading-[1.1]">Why Newlytic?</h2>
             <div className="mt-3 sm:mt-4 max-w-3xl space-y-3 sm:space-y-4">
-              <p className="text-base sm:text-[17px] text-gray-500 leading-[1.7]">There are dozens of CRMs out there—bloated, pricey, and overkill for most. If you just need a spreadsheet to list your customers, any of them will do. Many are even free.</p>
-              <p className="text-base sm:text-[17px] text-gray-500 leading-[1.7]">But if you want to <i>know</i> your customers and grow smarter without the hassle, you need Newlytic. A tool that syncs, delivers insights, and logs every step should take the grunt work off your plate—so you can focus on what matters.</p>
+              <p className="text-base sm:text-[17px] text-gray-500 leading-[1.7]">Most tools make you do the heavy lifting—manually updating records, digging for company info, or jumping between apps just to see what’s happening.</p>
+              <p className="text-base sm:text-[17px] text-gray-500 leading-[1.7]">Every new signup is enriched with company intel, synced from your favorite tools, and tracked from first touch to conversion. It’s everything you need to spot real opportunities, minus the CRM clutter.</p>
             </div>
           </div>
         </div>

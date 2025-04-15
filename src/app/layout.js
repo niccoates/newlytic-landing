@@ -13,8 +13,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  title: "Newlytic | Smart Customer Tracking Platform",
-  description: "Transform sign-ups into valuable customer relationships with Newlytic, the smart tool for tracking and understanding your customers effortlessly.",
+  title: "Newlytic – Customer pipeline on autopilot",
+description: "Automatically log new signups, get AI-powered intel, and track every interaction — simple, actionable, and always up to date.",
   keywords: ["customer tracking", "customer tracking tool", "customer analytics", "CRM", "customer insights", "AI analytics", "customer data platform", "startup analytics"],
   authors: [{ name: "Newlytic" }],
   openGraph: {
